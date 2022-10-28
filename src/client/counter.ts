@@ -143,7 +143,7 @@ export async function pingProgram(programName: string) {
     const instruction = new TransactionInstruction({
         keys: [{pubkey: clientPubKey, isSigner: false, isWritable: true}],
         programId,
-        data: createDecremnetCounterInstructionData()
+        data: createIncrementCounterInstructionData()
     });
 
     try {
@@ -168,7 +168,7 @@ example enum HelloInstruction{
 }
 */
 
-function createIncrementHelloInstructionData(): Buffer {
+function createIncrementCounterInstructionData(): Buffer {
     const dataLayout = BufferLayout.struct([
       BufferLayout.u8('instruction')
     ]);
@@ -183,7 +183,7 @@ function createIncrementHelloInstructionData(): Buffer {
   }
 
 
-  function createDecremnetCounterInstructionData(): Buffer {
+  function createDecrementCounterInstructionData(): Buffer {
     const dataLayout = BufferLayout.struct([
       BufferLayout.u8('instruction')
     ]);
@@ -197,7 +197,7 @@ function createIncrementHelloInstructionData(): Buffer {
   }
 
 
-  function createSetHelloInstructionData(): Buffer {
+  function createSetCounterInstructionData(): Buffer {
     const dataLayout = BufferLayout.struct([
       BufferLayout.u8('instruction'),
       BufferLayout.u32('value')

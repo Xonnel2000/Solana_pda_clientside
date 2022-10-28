@@ -3,7 +3,7 @@ import * as counter from './counter';
 
 
 //turn a typescript class into a struct
-class GreetingAccount {
+class CounterAccount {
   counter = 0;
   constructor(fields: {counter: number} | undefined = undefined) {
     if (fields) {
@@ -13,19 +13,19 @@ class GreetingAccount {
 }
 
 
-const GreetingSchema = new Map([
-  [GreetingAccount, {kind: 'struct', fields: [['counter', 'u32']]}],
+const CounterSchema = new Map([
+  [CounterAccount, {kind: 'struct', fields: [['counter', 'u32']]}],
 ]);
 
 
-const GREETING_SIZE = borsh.serialize(
-  GreetingSchema,
-  new GreetingAccount(),
+const Counter_SIZE = borsh.serialize(
+  CounterSchema,
+  new CounterAccount(),
 ).length;
 
 
 async function main() {
-  await counter.example('counter', GREETING_SIZE);
+  await counter.example('counter', Counter_SIZE);
 }
 
 main().then(
